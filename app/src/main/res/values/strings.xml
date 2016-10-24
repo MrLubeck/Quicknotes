@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">Quicknotes</string>
+    <string name="app_name">QuickNotes</string>
+    <string name="notas">Notes</string>
+    <string name="recordatorios">Reminders</string>
+    <string name="untitled">Untitled</string>
+    <string name="checklist">Checklist</string>
+    <string name="audio">Audio</string>
+    <string name="texto">Text</string>
+    <string name="recordatorio">Reminder</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="nombre">Name:</string>
+    <string name="descripcion">Description:</string>
+    <string name="notificaciones">Notifications></string>
+    <string name="ordenar">Order</string>
+    <string name="buscar">Search</string>
+    <string name="idioma">Language</string>
+    <string name="espaniol">Spanish</string>
+    <string name="ingles">English</string>
+    <string name="ordenamientoNota">Type</string>
+    <string name="ordenamientoFecha">Date</string>
+    <string name="resultados">Results</string>
+    <string name="configuracion">Configuration</string>
 </resources>
