@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickNotes</string>
+    <string name="notas">Notas</string>
+    <string name="recordatorios">Recordatorios</string>
+    <string name="untitled">Sin titulo</string>
+    <string name="checklist">Checklist</string>
+    <string name="audio">Audio</string>
+    <string name="texto">Texto</string>
+    <string name="recordatorio">Recordatorio</string>
+    <string name="from">De:</string>
+    <string name="to">A:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="descripcion">Descripcion:</string>
+    <string name="notificaciones">Notificaciones></string>
+    <string name="ordenar">Ordenar</string>
+    <string name="buscar">Buscar</string>
+    <string name="idioma">Idioma</string>
+    <string name="espaniol">Español</string>
+    <string name="ingles">Inglés</string>
+    <string name="ordenamientoNota">Tipo de nota</string>
+    <string name="ordenamientoFecha">Fecha de creación</string>
+    <string name="resultados">Resultados</string>
+    <string name="configuracion">Configuración</string>
+</resources>
