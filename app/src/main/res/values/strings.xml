@@ -21,4 +21,6 @@
     <string name="ordenamientoFecha">Date</string>
     <string name="resultados">Results</string>
     <string name="configuracion">Configuration</string>
+    <string name="title_activity_pantalla_principal">pantallaPrincipal</string>
+
 </resources>
