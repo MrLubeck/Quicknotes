@@ -10,7 +10,7 @@
 
         <activity
             android:name=".pantallaPrincipal"
-            android:label="@string/title_activity_pantalla_principal"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
