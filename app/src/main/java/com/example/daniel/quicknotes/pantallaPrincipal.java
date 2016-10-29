@@ -8,6 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 public class pantallaPrincipal extends AppCompatActivity {
+
+    public static final String NOTA_ID_EXTRA = "com.example.daniel.quickNotes.Nota identificador";
+    public static final String NOTA_TITLE_EXTRA = "com.example.daniel.quickNotes.Nota titulo";
+    public static final String NOTA_DESCRIPCION_EXTRA = "com.example.daniel.quickNotes.Texto nota";
+    public static final String NOTA_TIPO_EXTRA = "com.example.daniel.quickNotes.1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
