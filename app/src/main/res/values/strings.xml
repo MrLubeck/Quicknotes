@@ -23,7 +23,8 @@
     <string name="ordenamientoFecha">Fecha de creación</string>
     <string name="resultados">Resultados</string>
     <string name="configuracion">Configuración</string>
-    <string name="title_activity_pantalla_principal">Notes</string>
+    <string name="title_activity_pantalla_principal">Notas</string>
+    <string name="edit">Editar</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
