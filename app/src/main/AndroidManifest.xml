@@ -7,7 +7,6 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".pantallaPrincipal"
             android:label=""
@@ -18,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".notaDetalleActivity"></activity>
     </application>
 
 </manifest>
