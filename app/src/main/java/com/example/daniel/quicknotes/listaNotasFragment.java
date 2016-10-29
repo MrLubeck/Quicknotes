@@ -1,11 +1,14 @@
 package com.example.daniel.quicknotes;
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.app.ListFragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.view.ViewGroup;
@@ -30,6 +33,8 @@ public class listaNotasFragment extends ListFragment {
         notaAdaptador = new AdaptadorNota(getActivity(), notas);
         setListAdapter(notaAdaptador);
 
+        registerForContextMenu(getListView());
+
     }
 
     @Override
@@ -37,6 +42,27 @@ public class listaNotasFragment extends ListFragment {
         super.onListItemClick(l, v, position ,id);
         abrirDetalleNota(position);
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu , View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getActivity().getMenuInflater();
+
+        menuInflater.inflate(R.menu.menu_pantalla,menu);
+
+    }
+
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        switch(item.getItemId()) {
+            case R.id.edit:
+                //se selecciono la opcion editar
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
 
     private void abrirDetalleNota(int posicion) {
         Nota nota = (Nota) getListAdapter().getItem(posicion);
