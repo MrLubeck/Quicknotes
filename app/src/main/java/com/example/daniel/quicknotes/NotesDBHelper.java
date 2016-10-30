@@ -23,7 +23,7 @@ public class NotesDBHelper  {
                     + COL_TITULO + "TEXT,"
                     + COL_DESCRIPCION+ "TEXT,"
                     + COL_TIPO + "INTEGER NOT NULL,"
-                    + COL_FECHA +" TEXT" + ")";
+                    + COL_FECHA +");";
 
     private String[] columnas = {COL_ID , COL_TITULO, COL_DESCRIPCION, COL_TIPO, COL_FECHA};
 
