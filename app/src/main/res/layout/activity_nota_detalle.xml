@@ -5,7 +5,7 @@
     android:id="@+id/contenedor_nota"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.daniel.quicknotes.notaDetalleActivity">
+    tools:context="com.example.daniel.quicknotes.notaDetalleActivity"
+    android:background="#f6f6f6">
 
 </LinearLayout>
-
