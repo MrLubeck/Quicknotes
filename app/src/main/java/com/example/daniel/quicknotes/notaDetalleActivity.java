@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 public class notaDetalleActivity extends AppCompatActivity {
 
+    public static final String NEW_NOTE_EXTRA = "Nueva nota";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,9 @@ public class notaDetalleActivity extends AppCompatActivity {
             case CREAR:
                 EditarNotaFragment crearNotaFragment = new EditarNotaFragment();
                 setTitle("Nueva nota");
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(NEW_NOTE_EXTRA, true);
+                crearNotaFragment.setArguments(bundle);
                 fragmentTransaction.add(R.id.contenedor_nota, crearNotaFragment, "AGREGAR_NOTA_FRAGMENT");
                 break;
 
@@ -53,3 +58,4 @@ public class notaDetalleActivity extends AppCompatActivity {
     }
 
 }
+
