@@ -6,6 +6,7 @@
 
     <item
         android:id="@+id/agregarNota"
+
         android:title="Agregar"
         app:showAsAction="ifRoom"
         />
