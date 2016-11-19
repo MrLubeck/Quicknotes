@@ -25,7 +25,8 @@
         android:textAlignment="center"
         android:textIsSelectable="true"
         android:background="@drawable/contorno"
-        android:allowUndo="true" />
+        android:allowUndo="true"
+        android:clickable="true" />
 
 
 </LinearLayout>

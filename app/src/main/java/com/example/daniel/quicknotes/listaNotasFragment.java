@@ -27,9 +27,14 @@ public class listaNotasFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         notas = new ArrayList<Nota>();
-        notas.add(new Nota("Titulo nota", "La nota" , 1));
+       /* notas.add(new Nota("Titulo nota", "La nota" , 1));
         notas.add(new Nota("Titulo nota 2", "La nota 2 " , 1));
-        notas.add(new Nota("Titulo nota 3", "La nota 2" , 1));
+        notas.add(new Nota("Titulo nota 3", "La nota 2" , 1));*/
+
+       NotesDbAdapter dbAdapter = new NotesDbAdapter(getActivity().getBaseContext());
+        dbAdapter.open();
+        notas = dbAdapter.getNotes();
+        dbAdapter.close();
         notaAdaptador = new AdaptadorNota(getActivity(), notas);
         setListAdapter(notaAdaptador);
 
@@ -59,6 +64,7 @@ public class listaNotasFragment extends ListFragment {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int posicionFila = info.position;
+        Nota nota = (Nota) getListAdapter().getItem(posicionFila);
         switch(item.getItemId()) {
 
 
@@ -68,6 +74,16 @@ public class listaNotasFragment extends ListFragment {
                 abrirDetalleNota(pantallaPrincipal.fragmento.EDITAR, posicionFila);
                 Log.d("Menu clicks" , "Prueba");
                 return true;
+
+            case R.id.delete:
+                NotesDbAdapter dbAdapter = new NotesDbAdapter(getActivity().getBaseContext());
+                dbAdapter.open();
+                dbAdapter.borrarNota(nota.getIdNota());
+                notas.clear();
+                notas.addAll(dbAdapter.getNotes());
+                notaAdaptador.notifyDataSetChanged();
+                dbAdapter.close();
+
         }
         return super.onContextItemSelected(item);
     }

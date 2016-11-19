@@ -24,4 +24,6 @@
     <string name="configuracion">Configuration</string>
     <string name="title_activity_pantalla_principal">Notes</string>
     <string name="edit">Edit</string>
+
+    <string name="delete">Delete</string>
 </resources>

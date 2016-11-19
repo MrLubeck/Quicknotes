@@ -24,6 +24,8 @@ public class EditarNotaFragment extends Fragment{
     private int tipo = 1;
     private AlertDialog popupGuardar;
 
+
+    private long idNota = 0;
     private boolean newNote = false;
 
     public EditarNotaFragment() {
@@ -57,6 +59,7 @@ public class EditarNotaFragment extends Fragment{
 
 
         Intent intent = getActivity().getIntent();
+        idNota = intent.getExtras().getLong(pantallaPrincipal.NOTA_ID_EXTRA);
         titulo.setText(intent.getExtras().getString(pantallaPrincipal.NOTA_TITLE_EXTRA, ""));
         descripcion.setText(intent.getExtras().getString(pantallaPrincipal.NOTA_DESCRIPCION_EXTRA,""));
         return fragmentLayout;
@@ -71,14 +74,14 @@ public class EditarNotaFragment extends Fragment{
             @Override
             public void onClick(DialogInterface dialogo , int opcion){
 
-                NotesDBHelper dbAdapter = new NotesDBHelper(getActivity().getBaseContext());
+                NotesDbAdapter dbAdapter = new NotesDbAdapter(getActivity().getBaseContext());
                 dbAdapter.open();
                 if(newNote){
                     dbAdapter.crearNota(titulo.getText() + "", descripcion.getText()+ "", tipo );
                 }
                 else
                 {
-
+                    dbAdapter.editarNota(idNota,titulo.getText() + "" , descripcion.getText() + "" );
                 }
                 Intent intent = new Intent(getActivity(), pantallaPrincipal.class);
                 startActivity(intent);

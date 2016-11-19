@@ -1,17 +1,22 @@
 package com.example.daniel.quicknotes;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class NotesDBHelper  {
+/**
+ * Created by Daniel on 11/18/2016.
+ */
+public class NotesDbAdapter {
 
-    public static final String DATABASE_NAME = "Quicknotes.db";
+    public static final String DATABASE_NAME = "quicknotes.db";
+    public static final int DATABASE_VERSION = 1;
+
     public static final String TABLE_NAME = "notas";
     public static final String COL_ID = "_id";
     public static final String COL_TITULO = "titulo";
@@ -19,7 +24,7 @@ public class NotesDBHelper  {
     public static final String COL_TIPO = "tipo";
     public static final String COL_FECHA = "fecha";
 
-    private static final String SQL_CREATE_ENTRIES =
+    private static final String CREATE_TABLE_NOTES =
             "CREATE TABLE " + TABLE_NAME + " ( "   + COL_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + COL_TITULO + " TEXT, "
                     + COL_DESCRIPCION+ " TEXT, "
@@ -34,22 +39,24 @@ public class NotesDBHelper  {
     private SQLiteDatabase sqlDB;
     private Context context;
 
-    private NotasDB notasDB;
 
-    public NotesDBHelper(Context ctx){
+
+    private NotebookDBHelper notebookDBHelper;
+
+
+    public NotesDbAdapter(Context ctx){
         context = ctx;
     }
 
-    public NotesDBHelper open() throws android.database.SQLException{
-        notasDB = new NotasDB(context);
-        Log.d("ejercucion","se ejecuta");
-        sqlDB = notasDB.getWritableDatabase();
-        Log.d("fff" ,"dfdfd");
+    public NotesDbAdapter open() throws android.database.SQLException{
+        notebookDBHelper = new NotebookDBHelper(context);
+        sqlDB =  notebookDBHelper.getWritableDatabase();
         return this;
+
     }
 
     public void close(){
-        notasDB.close();
+        notebookDBHelper.close();
     }
 
     public Nota crearNota(String titulo, String descripcion , int tipo){
@@ -64,6 +71,20 @@ public class NotesDBHelper  {
         Nota nuevaNota = cursorNota(cursor);
         cursor.close();
         return nuevaNota;
+    }
+
+    public long editarNota(long idNota, String titulo, String contenido){
+        ContentValues values = new ContentValues();
+        values.put(COL_TITULO, titulo);
+        values.put(COL_DESCRIPCION, contenido);
+
+        values.put(COL_FECHA, Calendar.getInstance().getTimeInMillis() + "");
+        return sqlDB.update(TABLE_NAME, values, COL_ID +" = "+ idNota ,null);
+
+    }
+
+    public long borrarNota(long idNota){
+        return sqlDB.delete(TABLE_NAME, COL_ID + " =  " +idNota, null);
     }
 
 
@@ -86,37 +107,24 @@ public class NotesDBHelper  {
     }
 
 
-    private static class NotasDB extends SQLiteOpenHelper {
-        NotasDB(Context context) {
-            super(context, DATABASE_NAME, null, 1);
-            SQLiteDatabase db = this.getWritableDatabase();
+
+    private static class NotebookDBHelper extends SQLiteOpenHelper{
+        NotebookDBHelper(Context ctx){
+            super(ctx , DATABASE_NAME , null, DATABASE_VERSION);
         }
 
         @Override
-        public void onCreate(SQLiteDatabase db) {
-            Log.d("AYUDAAA","POR FAVOR");
-            db.execSQL(SQL_CREATE_ENTRIES);
+        public void onCreate(SQLiteDatabase db){
+            db.execSQL(CREATE_TABLE_NOTES);
+
         }
 
         @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL(SQL_UPGRADE);
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+            db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME);
             onCreate(db);
         }
-
-        public boolean insert(String titulo, String descripcion, int tipo, String fecha) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(COL_TITULO, titulo);
-            contentValues.put(COL_DESCRIPCION, descripcion);
-            contentValues.put(COL_TIPO, tipo);
-            contentValues.put(COL_FECHA, fecha);
-            long result = db.insert(TABLE_NAME, null, contentValues);
-            if (result == -1)
-                return false;
-            else
-                return true;
-
-        }
     }
+
 }
+

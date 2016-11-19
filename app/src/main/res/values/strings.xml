@@ -25,6 +25,7 @@
     <string name="configuracion">Configuración</string>
     <string name="title_activity_pantalla_principal">Notas</string>
     <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
